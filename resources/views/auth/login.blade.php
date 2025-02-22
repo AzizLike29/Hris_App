@@ -18,32 +18,60 @@
 
 @section('scripts')
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("loginBtn").addEventListener("click", function(event) {
-                event.preventDefault();
+        document.addEventListener("DOMContentLoaded", () => {
+            // Inisalisasi element form
+            const emailInput = document.getElementById('name');
+            const passwordInput = document.getElementById('password');
+            const rememberMe = document.getElementById('flexCheckDefault');
+            const loginBtn = document.getElementById('loginBtn');
 
-                const email = document.getElementById('name');
-                const password = document.getElementById('password');
+            // Memuat email yang disimpan
+            if (localStorage.getItem('email')) {
+                emailInput.value = localStorage.getItem('email');
+                rememberMe.checked = true;
+            }
 
-                // validasi input tidak boleh kosong/wajib di isi
-                let isValid = true;
+            // Fungsional centang
+            rememberMe.addEventListener('change', () => {
+                if (rememberMe.checked) {
+                    localStorage.setItem('email', emailInput.value);
+                } else {
+                    localStorage.removeItem('email');
+                    emailInput.value = '';
+                }
+            });
 
-                if (email.value.trim() === '') {
+            // Menyimpan email saat mengetik jika klik centang
+            emailInput.addEventListener('input', () => {
+                if (rememberMe.checked) {
+                    localStorage.setItem('email', emailInput.value);
+                }
+                document.getElementById('dangerName').textContent = '';
+            });
+
+            // Apabila error maka inputan dibersihkan
+            passwordInput.addEventListener('input', () => {
+                document.getElementById('dangerPassword').textContent = '';
+            });
+
+            // Proses tombol login
+            loginBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                let canSubmit = true;
+
+                // Periksa data kosong
+                if (!emailInput.value.trim()) {
                     document.getElementById('dangerName').textContent = 'Silakan isi name anda!';
-                    isValid = false;
-                } else {
-                    document.getElementById('dangerName').textContent = '';
+                    canSubmit = false;
                 }
 
-                if (password.value.trim() === '') {
+                if (!passwordInput.value.trim()) {
                     document.getElementById('dangerPassword').textContent = 'Silakan isi password anda!';
-                    isValid = false;
-                } else {
-                    document.getElementById('dangerPassword').textContent = '';
+                    canSubmit = false;
                 }
 
-                // menampilkan pesan sukses
-                if (isValid) {
+                // Menampilkan pesan disaat submit
+                if (canSubmit) {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -55,18 +83,9 @@
                             popup: 'mt-6'
                         }
                     }).then(() => {
-                        event.target.closest('form').submit();
+                        e.target.closest('form').submit();
                     });
                 }
-            });
-
-            // validasi hilang disaat mengisi input
-            document.getElementById('name').addEventListener('input', function() {
-                document.getElementById('dangerName').textContent = '';
-            });
-
-            document.getElementById('password').addEventListener('input', function() {
-                document.getElementById('dangerPassword').textContent = '';
             });
         });
     </script>

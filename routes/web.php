@@ -5,6 +5,8 @@ use App\Http\Controllers\admin\CutiController;
 use App\Http\Controllers\User\LoginController;
 use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\admin\EmployeeController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 Route::get('/', function () {
     return redirect()->route('register.index');
@@ -17,8 +19,12 @@ Route::any('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'prosLogin'])->name('login.process');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/master-employee', [EmployeeController::class, 'index'])->name('master-employee');
+Route::middleware('guest')->group(function () {
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'password'])->name('password.request');
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'forgotPassword'])->name('password.email');
+
+    Route::get('/reset-password/{token}', [ResetPasswordController::class, 'resetPassword'])->name('password.reset');
+    Route::post('/reset-password', [ResetPasswordController::class, 'resetPasswordForm'])->name('password.update');
 });
 
 Route::prefix('admin')->middleware('auth')->group(function () {
