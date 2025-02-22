@@ -3,5 +3,5 @@
     <a href="{{ route('register.index') }}" class="font-bold">Sign up</a>.
 </p>
 <p>
-    <a class="font-bold" href="#">Forgot password?</a>.
+    <a class="font-bold" href="{{ route('password.request') }}">Forgot password?</a>.
 </p>

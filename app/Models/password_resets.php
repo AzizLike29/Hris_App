@@ -10,7 +10,6 @@ class password_resets extends Model
 
     protected $fillable = [
         'email',
-        'token',
-        'created_at'
+        'token'
     ];
 }

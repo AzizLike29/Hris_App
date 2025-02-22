@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -18,11 +19,23 @@ class LoginController extends Controller
         $credentials = $request->only('name', 'password');
         $remember = $request->has('remember_token');
 
-        if (!Auth::attempt($credentials, $remember)) {
-            return redirect()->back()->with('error', 'Email atau password salah!');
+        // Cek apakah name ada di database
+        $user = User::where('name', $credentials['name'])->first();
+
+        if (!$user) {
+            return response()->json(['error' => 'Name tidak ditemukan!'], 401);
         }
 
-        return redirect()->route('master-employee');
+        // Cek apakah password benar
+        if (!Auth::attempt($credentials, $remember)) {
+            return response()->json(['error' => 'Password salah!'], 401);
+        }
+
+        // Jika login berhasil
+        return response()->json([
+            'success' => 'Login berhasil!',
+            'redirect_url' => route('master-employee') // Redirect URL
+        ], 200);
     }
 
     public function logout()

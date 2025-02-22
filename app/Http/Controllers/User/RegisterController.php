@@ -19,6 +19,7 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'password_confirmation' => 'required'
         ]);
 
         return redirect('login')->with('success', 'Berhasil menambahkan user baru!');
