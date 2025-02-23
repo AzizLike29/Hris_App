@@ -4,7 +4,7 @@
     @include('layout.partials.messages')
 
     <div class="page-heading">
-        <h3>Cuti Employee</h3>
+        <h3>Leave Employee</h3>
     </div>
 
     <div class="card">
@@ -15,17 +15,17 @@
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <div class="d-flex flex-column">
                                 <label for="searchNip" class="mb-1">NIP:</label>
-                                <input type="text" id="searchNIP" class="form-control mb-2" placeholder="Pencarian NIP">
+                                <input type="text" id="searchNIP" class="form-control mb-2" placeholder="NIP Search">
 
                                 <label for="searchNameKaryawan" class="mb-1">Employee Name:</label>
                                 <input type="text" id="searchNameKaryawan" class="form-control"
-                                    placeholder="Pencarian Nama Karyawan">
+                                    placeholder="Employee Name Search">
                             </div>
 
                             <div class="d-flex align-items-center flex-nowrap">
-                                <label for="searchTanggalCuti" class="mb-0 me-2 text-nowrap">Tanggal Cuti:</label>
+                                <label for="searchTanggalCuti" class="mb-0 me-2 text-nowrap">Leave Date:</label>
                                 <input type="date" id="searchTanggalCuti" class="form-control"
-                                    placeholder="Pencarian Tanggal Cuti">
+                                    placeholder="Leave Date Search">
                             </div>
                         </div>
                         @include('components.cuti.card-body-cuti-employee')

@@ -14,12 +14,12 @@
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
                                 <label for="searchName" class="mb-0 me-2">NIP:</label>
-                                <input type="text" id="searchNIP" class="form-control" placeholder="Pencarian NIP">
+                                <input type="text" id="searchNIP" class="form-control" placeholder="NIP Search">
                             </div>
                             <div class="d-flex align-items-center flex-nowrap">
                                 <label for="searchName" class="mb-0 me-2 text-nowrap">Employee
                                     Name:</label>
-                                <input type="text" id="searchName" class="form-control" placeholder="Pencarian Nama">
+                                <input type="text" id="searchName" class="form-control" placeholder="Name Search">
                             </div>
                         </div>
                         @include('components.employee.card-body-master-employee')

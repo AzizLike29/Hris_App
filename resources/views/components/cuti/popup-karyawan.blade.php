@@ -5,7 +5,7 @@
             <form id="form-select-employee" action="{{ route('cuti.select_employee') }}" method="POST">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title">Pilih Karyawan</h5>
+                    <h5 class="modal-title">Select Employee</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -14,13 +14,13 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Pilih</th>
+                                    <th>Select</th>
                                     <th>NIP</th>
                                     <th>Employee Name</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($cuti as $emp)
+                                @foreach ($cuti_employee as $emp)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>

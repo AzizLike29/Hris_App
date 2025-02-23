@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('cuti_employee', function (Blueprint $table) {
             $table->id();
+            $table->string('nip');
             $table->string('karyawan');
             $table->date('tanggal_cuti');
             $table->string('lama_cuti');

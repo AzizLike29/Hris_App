@@ -6,9 +6,10 @@
                 <th>Edit</th>
                 <th>Delete</th>
                 <th>NIP</th>
-                <th>Nama Karyawan</th>
-                <th>Tanggal Cuti</th>
-                <th>Lama Cuti</th>
+                <th>Employee Name</th>
+                <th>Leave Date</th>
+                <th>Leave Duration</th>
+                <th>Description</th>
             </tr>
         </thead>
         <tbody>

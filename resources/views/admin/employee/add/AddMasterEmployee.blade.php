@@ -10,13 +10,13 @@
 
         <div class="mb-3">
             <label for="nip">NIP</label>
-            <input type="text" class="form-control" id="nip" name="nip" placeholder="{{ $nextNipEmployee }}"
-                required readonly>
+            <input type="text" class="form-control" id="nip" name="nip" value="{{ $nextNipEmployee }}" required
+                readonly>
         </div>
         <div class="mb-3">
             <label for="employee_name">Employee Name</label>
             <input type="text" class="form-control" id="employee_name" name="employee_name"
-                placeholder="Masukkan Employee Name" required>
+                placeholder="Enter Employee Name" required>
         </div>
         <div class="mb-3">
             <label for="gender">Gender</label>
@@ -29,17 +29,16 @@
         <div class="mb-3">
             <label for="phone_number">Phone Number</label>
             <input type="number" class="form-control" id="phone_number" name="phone_number"
-                placeholder="Masukkan Phone Number" required>
+                placeholder="Enter Phone Number" required>
         </div>
         <div class="mb-3">
             <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="Masukkan Address"
-                required>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required>
         </div>
         <div class="mb-3">
             <label for="date_of_birth">Date Of Birth</label>
-            <input type="date" class="form-control" id="nip" placeholder="Masukkan Date Of Birth"
-                name="date_of_birth" required>
+            <input type="date" class="form-control" id="nip" placeholder="Enter Date Of Birth" name="date_of_birth"
+                required>
         </div>
         <div class="d-flex justify-content-end my-3">
             <a href="{{ route('master-employee') }}" class="btn btn-secondary me-2">Cancel</a>

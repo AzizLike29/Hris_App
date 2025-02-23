@@ -39,6 +39,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/cuti/create', [CutiController::class, 'create'])->name('cuti.create');
     Route::post('/cuti/store', [CutiController::class, 'store'])->name('cuti_employee.store');
     Route::post('/cuti/select-employee', [CutiController::class, 'select_cuti_employee'])->name('cuti.select_employee');
+    Route::post('/cuti/select-update-employee', [CutiController::class, 'select_cuti_employee_update'])->name('cuti.select_update_employee');
     Route::get('/cuti-employee/edit/{id}', [CutiController::class, 'edit'])->name('cuti-employee.edit');
     Route::put('/cuti_employee/{id}', [CutiController::class, 'update'])->name('cuti_employee.update');
     Route::delete('/cuti_employee/{id}', [CutiController::class, 'delete_cuti_employee'])->name('cuti_employee.delete');

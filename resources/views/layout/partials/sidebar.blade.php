@@ -15,7 +15,7 @@
                 <li class="sidebar-item {{ Request::routeIs('cuti_employee.index') ? 'active' : '' }}">
                     <a href="{{ route('cuti_employee.index') }}" class="sidebar-link">
                         <i class="bi bi-stack"></i>
-                        <span>Cuti Employee</span>
+                        <span>Leave Employee</span>
                     </a>
                 </li>
 

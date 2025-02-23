@@ -2,10 +2,10 @@
     aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
-            <form id="form-select-employee">
+            <form action="{{ route('cuti.select_update_employee') }}" method="POST">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title">Pilih Karyawan</h5>
+                    <h5 class="modal-title">Select Employee</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -14,7 +14,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Pilih</th>
+                                    <th>Select</th>
                                     <th>NIP</th>
                                     <th>Employee Name</th>
                                 </tr>
@@ -24,9 +24,9 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
-                                            <input class="form-check-input employee-checkbox" type="radio"
-                                                name="selected_employee" value="{{ $emp->nip }}"
-                                                data-name="{{ $emp->employee_name }}">
+                                            <input class="form-check-input employee-checkbox" type="checkbox"
+                                                name="employee_selection[]" value="{{ $emp->nip }}"
+                                                {{ session('selected_employees_update')?->nip == $emp->nip ? 'checked' : '' }}>
                                         </td>
                                         <td>{{ $emp->nip }}</td>
                                         <td>{{ $emp->employee_name }}</td>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-primary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary ms-1" id="select-employee-btn">Accept</button>
+                    <button type="submit" class="btn btn-primary ms-1" id="select-employee-btn">Accept</button>
                 </div>
             </form>
         </div>
