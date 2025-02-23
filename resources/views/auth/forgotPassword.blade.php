@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="auth-logo">
-        <a href="#"><img src="{{ URL::asset('./assets/compiled/svg/logo.svg') }}" alt="Logo" /></a>
+        <a href="{{ route('password.request') }}"><img src="{{ URL::asset('./assets/compiled/svg/logo.svg') }}"
+                alt="Logo" /></a>
     </div>
     <h1 class="auth-title">Forgot Password?</h1>
     <p class="auth-subtitle mb-5">

@@ -101,23 +101,5 @@
                 }
             });
         });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggleIcons = document.querySelectorAll('#toggleIcon, #toggleIconConfirm');
-            const passwordFields = [document.querySelector('#password'), document.querySelector(
-                '#password-confirm')];
-
-            toggleIcons.forEach((icon, index) => {
-                icon.addEventListener('click', function() {
-                    const passwordField = passwordFields[index];
-                    const type = passwordField.getAttribute('type') === 'password' ? 'text' :
-                        'password';
-                    passwordField.setAttribute('type', type);
-
-                    this.classList.toggle('bi-eye');
-                    this.classList.toggle('bi-eye-slash');
-                });
-            });
-        });
     </script>
 @endsection

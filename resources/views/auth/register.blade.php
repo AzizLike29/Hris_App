@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="auth-logo">
-        <a href="#"><img src="{{ URL::asset('./assets/compiled/svg/logo.svg') }}" alt="Logo"></a>
+        <a href="{{ route('register.index') }}"><img src="{{ URL::asset('./assets/compiled/svg/logo.svg') }}" alt="Logo">
+        </a>
     </div>
     <h1 class="auth-title">Sign Up</h1>
     <p class="auth-subtitle mb-5">Input your data to register to our website.</p>
