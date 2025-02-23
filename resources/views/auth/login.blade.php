@@ -26,57 +26,36 @@
             const rememberMe = document.getElementById('flexCheckDefault');
             const loginBtn = document.getElementById('loginBtn');
 
-            // Memuat email yang disimpan
-            if (localStorage.getItem('email')) {
-                nameInput.value = localStorage.getItem('email');
+            // Memuat name yang disimpan
+            if (localStorage.getItem('name')) {
+                nameInput.value = localStorage.getItem('name');
                 rememberMe.checked = true;
             }
 
             // Fungsional centang
             rememberMe.addEventListener('change', () => {
                 if (rememberMe.checked) {
-                    localStorage.setItem('email', nameInput.value);
+                    localStorage.setItem('name', nameInput.value);
                 } else {
-                    localStorage.removeItem('email');
+                    localStorage.removeItem('name');
                     nameInput.value = '';
                 }
             });
 
-            // Menyimpan email saat mengetik jika klik centang
+            // Menyimpan name saat mengetik jika klik centang
             nameInput.addEventListener('input', () => {
                 if (rememberMe.checked) {
-                    localStorage.setItem('email', nameInput.value);
+                    localStorage.setItem('name', nameInput.value);
                 }
-                document.getElementById('dangerName').textContent = '';
-            });
-
-            // Apabila error maka inputan dibersihkan
-            passwordInput.addEventListener('input', () => {
-                document.getElementById('dangerPassword').textContent = '';
             });
 
             // Proses tombol login
             loginBtn.addEventListener("click", (e) => {
                 e.preventDefault();
-                let canSubmit = true;
-
-                // Periksa data kosong
-                if (!nameInput.value.trim()) {
-                    document.getElementById('dangerName').textContent = 'Silakan isi name anda!';
-                    canSubmit = false;
-                } else {
-                    document.getElementById('dangerName').textContent = '';
-                }
-
-                if (!passwordInput.value.trim()) {
-                    document.getElementById('dangerPassword').textContent = 'Silakan isi password anda!';
-                    canSubmit = false;
-                } else {
-                    document.getElementById('dangerPassword').textContent = '';
-                }
+                let processSubmit = true;
 
                 // Menampilkan pesan disaat submit
-                if (canSubmit) {
+                if (processSubmit) {
                     fetch('/login', {
                             method: 'POST',
                             headers: {
@@ -93,18 +72,17 @@
                         .then(response => {
                             if (!response.ok) {
                                 return response.json().then(errorData => {
-                                    throw errorData; // Lempar data error dari backend
+                                    throw errorData;
                                 });
                             }
                             return response.json();
                         })
                         .then(data => {
                             if (data.error) {
-                                // Tampilkan pesan error spesifik
                                 Swal.fire({
                                     position: "top-end",
                                     icon: "error",
-                                    title: data.error, // Pesan error dari backend
+                                    title: data.error,
                                     toast: true,
                                     showConfirmButton: false,
                                     timer: 1500,
@@ -133,7 +111,8 @@
                             Swal.fire({
                                 position: "top-end",
                                 icon: "error",
-                                title: "Terjadi kesalahan pada server. Silakan coba lagi.",
+                                title: error.error ||
+                                    "Terjadi kesalahan pada server. Silakan coba lagi.",
                                 toast: true,
                                 showConfirmButton: false,
                                 timer: 1500,

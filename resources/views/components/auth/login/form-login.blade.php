@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('login.process') }}">
+<form class="was-validated" method="POST" action="{{ route('login.process') }}">
     {{ csrf_field() }}
     <div class="form-group position-relative has-icon-left mb-4">
         <input type="text" class="form-control form-control-xl" name="name" placeholder="Masukkan Username"
@@ -6,7 +6,6 @@
         <div class="form-control-icon">
             <i class="bi bi-person"></i>
         </div>
-        <small id="dangerName" class="text-danger"></small>
     </div>
     <div class="form-group position-relative has-icon-left mb-4">
         <input type="password" class="form-control form-control-xl" name="password" placeholder="Masukkan Password"
@@ -14,7 +13,6 @@
         <div class="form-control-icon">
             <i class="bi bi-shield-lock"></i>
         </div>
-        <small id="dangerPassword" class="text-danger"></small>
     </div>
     <div class="form-check form-check-lg d-flex align-items-end">
         <input class="form-check-input me-2" type="checkbox" name="remember_token" value="" id="flexCheckDefault"

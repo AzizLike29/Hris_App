@@ -17,48 +17,48 @@
 @section('scripts')
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("daftarBtn").addEventListener("click", function(event) {
-                event.preventDefault();
-
-                const nama = document.getElementById('name');
-                const email = document.getElementById('email');
+            document.getElementById("daftarBtn").addEventListener("click", function(e) {
+                e.preventDefault();
+                // Inisalisasi element form
                 const password = document.getElementById('password');
-                const password_confirm = document.getElementById('password-confirm');
+                const passwordConfirm = document.getElementById('password-confirm');
 
-                // validasi input tidak boleh kosong/wajib di isi
-                let isValid = true;
+                let emptyValid = true;
 
-                if (nama.value.trim() === '') {
-                    document.getElementById('dangerName').textContent = 'Silakan isi nama anda!';
-                    isValid = false;
-                } else {
-                    document.getElementById('dangerName').textContent = '';
+                // Validasi panjang password
+                if (password.value.length < 6) {
+                    emptyValid = false;
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "Password minimal 6 karakter!",
+                        toast: true,
+                        showConfirmButton: false,
+                        timer: 1500,
+                        customClass: {
+                            popup: 'mt-6'
+                        }
+                    });
                 }
 
-                if (email.value.trim() === '') {
-                    document.getElementById('dangerEmail').textContent = 'Silakan isi email anda!';
-                    isValid = false;
-                } else {
-                    document.getElementById('dangerEmail').textContent = '';
-                }
-
-                if (password.value.trim() === '') {
-                    document.getElementById('dangerPassword').textContent = 'Silakan isi password anda!';
-                    isValid = false;
-                } else {
-                    document.getElementById('dangerPassword').textContent = '';
-                }
-
-                if (password_confirm.value.trim() === '') {
-                    document.getElementById('dangerConfirmationPassword').textContent =
-                        'Silakan isi konfirmasi password anda!';
-                    isValid = false;
-                } else {
-                    document.getElementById('dangerConfirmationPassword').textContent = '';
+                // Validasi kesamaan password dan password confirmation
+                if (password.value !== passwordConfirm.value) {
+                    emptyValid = false;
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "Password tidak sama!",
+                        toast: true,
+                        showConfirmButton: false,
+                        timer: 1500,
+                        customClass: {
+                            popup: 'mt-6'
+                        }
+                    });
                 }
 
                 // menampilkan pesan sukses
-                if (isValid) {
+                if (emptyValid) {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -73,23 +73,6 @@
                         document.querySelector('form').submit();
                     });
                 }
-            });
-
-            // validasi hilang disaat mengisi input
-            document.getElementById('name').addEventListener('input', function() {
-                document.getElementById('dangerName').textContent = '';
-            });
-
-            document.getElementById('email').addEventListener('input', function() {
-                document.getElementById('dangerEmail').textContent = '';
-            });
-
-            document.getElementById('password').addEventListener('input', function() {
-                document.getElementById('dangerPassword').textContent = '';
-            });
-
-            document.getElementById('password-confirm').addEventListener('input', function() {
-                document.getElementById('dangerConfirmationPassword').textContent = '';
             });
         });
     </script>
